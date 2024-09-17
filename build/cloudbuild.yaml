@@ -31,7 +31,13 @@ steps:
     - |
       terraform show -no-color tfoutput.plan 
   dir: 'test-project-ai'
-
+- name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/tools/terraform'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      terraform apply -auto-approve tfoutput.plan
+  dir: 'test-project-ai'
 # - name: 'gcr.io/cloud-builders/curl:latest'
 #   entrypoint: 'bash'
 #   args:
