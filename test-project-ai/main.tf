@@ -15,7 +15,7 @@
  */
 
 module "simple_example" {
-  source = "vertex-ai-rag"
+  source = "./vertex-ai-rag"
 
   project_id = var.project_id
   # region              = "asia-southeast1"
