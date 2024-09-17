@@ -15,7 +15,7 @@
  */
 
 module "simple_example" {
-  source = ".."
+  source = "./"
 
   project_id = var.project_id
   # region              = "asia-southeast1"
