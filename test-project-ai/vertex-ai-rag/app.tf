@@ -138,14 +138,15 @@ resource "google_cloud_run_v2_service" "frontend_service" {
   }
 }
 
+# Step #3: Error applying IAM policy for cloudrun service "v1/projects/test-project-ai-435808/locations/asia-east2/services/frontend-service-750b4516": Error setting IAM policy for cloudrun service "v1/projects/test-project-ai-435808/locations/asia-east2/services/frontend-service-750b4516": googleapi: Error 400: One or more users named in the policy do not belong to a permitted customer,  perhaps due to an organization policy
 # # Set the frontend service to allow all users
-resource "google_cloud_run_service_iam_member" "noauth_frontend" {
-  location = google_cloud_run_v2_service.frontend_service.location
-  project  = google_cloud_run_v2_service.frontend_service.project
-  service  = google_cloud_run_v2_service.frontend_service.name
-  role     = "roles/run.invoker"
-  member   = "allUsers"
-}
+#resource "google_cloud_run_service_iam_member" "noauth_frontend" {
+#  location = google_cloud_run_v2_service.frontend_service.location
+#  project  = google_cloud_run_v2_service.frontend_service.project
+#  service  = google_cloud_run_v2_service.frontend_service.name
+#  role     = "roles/run.invoker"
+#  member   = "allUsers"
+#}
 
 
 
