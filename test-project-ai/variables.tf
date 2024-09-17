@@ -17,5 +17,5 @@
 variable "project_id" {
   description = "The ID of the project in which to provision resources."
   type        = string
-  default     = 'test-project-ai'
+  default     = "test-project-ai-435808"
 }

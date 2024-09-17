@@ -4,7 +4,7 @@
 **/terraform.tfplan
 **/values-*.yaml
 credentials.json
-
+synch.sh
 # Python
 *.pyc
 #*.txt
