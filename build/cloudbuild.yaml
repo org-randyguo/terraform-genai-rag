@@ -1,23 +1,5 @@
 timeout: 3600s
-steps:
-# - name: 'gcr.io/cloud-builders/wget'
-#   args: ["https://releases.hashicorp.com/terraform/${_TERRAFORM_VERSION}/terraform_${_TERRAFORM_VERSION}_linux_amd64.zip"]
-# - name: 'gcr.io/cloud-builders/docker'
-#   env:
-#   - 'TERRAFORM_VERSION=${_TERRAFORM_VERSION}'
-#   args:
-#   - build
-#   - --build-arg
-#   - TERRAFORM_VERSION=${_TERRAFORM_VERSION}
-#   - --tag
-#   - ${_TERRAFORM_IMAGE}:${_TERRAFORM_VERSION}
-#   - --tag
-#   - ${_TERRAFORM_IMAGE}:latest
-#   - .
-  
-# - name: '${_TERRAFORM_IMAGE}:${_TERRAFORM_VERSION}'
-#   args: ['version']
-  
+steps:  
 - name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/tools/terraform'
   entrypoint: 'bash'
   args:
@@ -25,8 +7,6 @@ steps:
     - |
       terraform init 
   dir: 'test-project-ai'
-  env:
-    - "TF_VAR_project_id=${PROJECT_ID}"
 
 - name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/tools/terraform'
   entrypoint: 'bash'
@@ -35,9 +15,7 @@ steps:
     - |
       terraform validate 
   dir: 'test-project-ai'
-  env:
-    - "TF_VAR_project_id=${PROJECT_ID}"
-    
+   
 - name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/tools/terraform'
   entrypoint: 'bash'
   args:
@@ -45,9 +23,7 @@ steps:
     - |
       terraform plan -out=tfoutput.plan
   dir: 'test-project-ai'
-  env:
-    - "TF_VAR_project_id=${PROJECT_ID}"
-    
+ 
 - name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/tools/terraform'
   entrypoint: 'bash'
   args:
@@ -55,8 +31,6 @@ steps:
     - |
       terraform show -no-color tfoutput.plan 
   dir: 'test-project-ai'
-  env:
-    - "TF_VAR_project_id=${PROJECT_ID}"   
 
 - name: 'gcr.io/cloud-builders/curl:latest'
   entrypoint: 'bash'
@@ -74,9 +48,6 @@ steps:
 #   dir: 'test-project-ai'
 #   env:
 #     - "TF_VAR_project_id=${PROJECT_ID}"     
-# images:
-#   - '${_TERRAFORM_IMAGE}:${_TERRAFORM_VERSION}'
-#   - '${_TERRAFORM_IMAGE}:latest'
 
 options:
   logging: CLOUD_LOGGING_ONLY
