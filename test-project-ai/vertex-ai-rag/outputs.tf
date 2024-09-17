@@ -1,5 +1,5 @@
 /**
- * Copyright 2021 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,11 +14,8 @@
  * limitations under the License.
  */
 
-module "simple_example" {
-  source = "vertex-ai-rag"
 
-  project_id = var.project_id
-  # region              = "asia-southeast1"
-  # deletion_protection = false
-  # force_destroy       = true
+output "deployment_ip_address" {
+  description = "Web URL link"
+  value       = google_cloud_run_v2_service.frontend_service.uri
 }
