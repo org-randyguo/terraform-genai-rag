@@ -6,7 +6,7 @@ steps:
     - '-c'
     - |
       terraform init 
-  dir: 'example/simple_example'
+  dir: 'test-project-ai'
 
 - name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/tools/terraform'
   entrypoint: 'bash'
@@ -14,7 +14,7 @@ steps:
     - '-c'
     - |
       terraform validate 
-  dir: 'example/simple_example'
+  dir: 'test-project-ai'
    
 - name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/tools/terraform'
   entrypoint: 'bash'
@@ -22,7 +22,7 @@ steps:
     - '-c'
     - |
       terraform plan -out=tfoutput.plan
-  dir: 'example/simple_example'
+  dir: 'test-project-ai'
  
 - name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/tools/terraform'
   entrypoint: 'bash'
@@ -30,7 +30,7 @@ steps:
     - '-c'
     - |
       terraform show -no-color tfoutput.plan 
-  dir: 'example/simple_example'
+  dir: 'test-project-ai'
 
 - name: 'gcr.io/cloud-builders/curl:latest'
   entrypoint: 'bash'
@@ -45,7 +45,7 @@ steps:
     
 # - name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/tools/terraform'
 #   args: ['apply']
-#   dir: 'example/simple_example'
+#   dir: 'test-project-ai'
 #   env:
 #     - "TF_VAR_project_id=${PROJECT_ID}"     
 
