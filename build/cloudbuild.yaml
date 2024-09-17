@@ -24,13 +24,13 @@ steps:
       terraform plan -out=tfoutput.plan
   dir: 'test-project-ai'
  
-- name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/tools/terraform'
-  entrypoint: 'bash'
-  args:
-    - '-c'
-    - |
-      terraform show -no-color tfoutput.plan 
-  dir: 'test-project-ai'
+# - name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/tools/terraform'
+#   entrypoint: 'bash'
+#   args:
+#     - '-c'
+#     - |
+#       terraform show -no-color tfoutput.plan 
+#   dir: 'test-project-ai'
 - name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/tools/terraform'
   entrypoint: 'bash'
   args:
