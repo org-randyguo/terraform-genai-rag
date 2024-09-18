@@ -18,7 +18,7 @@ module "simple_example" {
   source = "./vertex-ai-rag"
 
   project_id = var.project_id
-  # region              = "asia-southeast1"
+  # region              = "australia-southeast1"
   # deletion_protection = false
   # force_destroy       = true
 }
