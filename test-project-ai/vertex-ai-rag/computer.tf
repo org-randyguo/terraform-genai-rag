@@ -1,4 +1,5 @@
 resource "google_compute_instance" "test-project-ai" {
+  provider = google
   name = "test-project-ai-vm"
   region = var.region
   zone = "${var.region}-a"
