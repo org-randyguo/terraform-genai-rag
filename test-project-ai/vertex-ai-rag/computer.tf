@@ -1,5 +1,7 @@
 resource "google_compute_instance" "test-project-ai" {
   name = "test-project-ai-vm"
+  region = var.region
+  zone = "${var.region}-a"
   machine_type = "e2-micro"
   network_interface {
     network = "default"
