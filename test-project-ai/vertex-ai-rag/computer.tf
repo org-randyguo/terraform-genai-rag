@@ -1,5 +1,5 @@
-resource "google_compute_instance" "default" {
-  name = "default"
+resource "google_compute_instance" "test-project-ai" {
+  name = "test-project-ai-vm"
   machine_type = "e2-micro"
   network_interface {
     network = "default"
