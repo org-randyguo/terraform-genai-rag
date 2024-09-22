@@ -1,0 +1,35 @@
+timeout: 3600s
+steps:
+- name: 'gcr.io/cloud-builders/wget'
+  args: ["https://releases.hashicorp.com/terraform/${_TERRAFORM_VERSION}/terraform_${_TERRAFORM_VERSION}_linux_amd64.zip"]
+  dir: 'build'
+- name: 'gcr.io/cloud-builders/docker'
+  env:
+  - 'TERRAFORM_VERSION=${_TERRAFORM_VERSION}'
+  args:
+  - build
+  - --build-arg
+  - TERRAFORM_VERSION=${_TERRAFORM_VERSION}
+  - --tag
+  - asia-east2-docker.pkg.dev/${PROJECT_ID}/tools/terraform:${_TERRAFORM_VERSION}
+  - --tag
+  - asia-east2-docker.pkg.dev/${PROJECT_ID}/tools/terraform:latest
+  - .
+  dir: 'build'
+  
+- name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/tools/terraform:latest'
+  args: ['--version']
+
+images:
+  - 'asia-east2-docker.pkg.dev/${PROJECT_ID}/tools/terraform:${_TERRAFORM_VERSION}'
+  - 'asia-east2-docker.pkg.dev/${PROJECT_ID}/tools/terraform:latest'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+  
+tags:
+- 'tools'
+- 'preparation'
+
+substitutions:
+  _TERRAFORM_VERSION: 1.9.5
